@@ -1,4 +1,4 @@
-import useState from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
 
@@ -12,21 +12,22 @@ function App() {
         amountOfBalls: 6
     };
 
-    let {counter} = data;
+    // let {counter} = data;
     const {numbers} = data;
     const {limitNumber, amountOfBalls} = status;
 
-    const selectors = {
-        ballsContainer:'.balls',
-        ballsElements: '.ball',
-        numbersContainer: '.results',
-        generatorBtn: '.generator',
-        nextBtn: '.next',
-        clean: '.clean',
-        hide: 'hide',
-        disable: 'disabled'
-    };
+    // const selectors = {
+    //     ballsContainer:'.balls',
+    //     ballsElements: '.ball',
+    //     numbersContainer: '.results',
+    //     generatorBtn: '.generator',
+    //     nextBtn: '.next',
+    //     clean: '.clean',
+    //     hide: 'hide',
+    //     disable: 'disabled'
+    // };
 
+    const [uiNumbers, setUInumbers] = useState([]);
     //const [disable, setDisable] = useState(false);
 
     // const numbersContainer = document.querySelector(selectors.numbersContainer);
@@ -34,25 +35,27 @@ function App() {
     // const cleanBtn = document.querySelector(selectors.clean);
     // const nextBtn = document.querySelector(selectors.nextBtn);
 
-    function init() {
-        // generateNumbers();
-        // cleanAll();
-        // displayNumbersList();
-        fillTheArray();
-    };
+    useEffect(()=>{
+            // generateNumbers();
+            // cleanAll();
+            // displayNumbersList();
+            fillTheArray();
+    },[])
 
     function fillTheArray() {
+        let numbers = [];
         for (let i = 0; i < amountOfBalls; i++) {
             numbers.push('-');
         };
+        setUInumbers(numbers);
     };
 
-    // function generateNumbers() {
-    //     generatorButton.disable();
-    //     for (let i = 0; i < amountOfBalls; i++) {
-    //         setTimeout(displayBallNumber, (i + 1) * 300);
-    //     };
-    // };
+    function generateNumbers() {
+        // generatorButton.disable();
+        for (let i = 0; i < amountOfBalls; i++) {
+            displayBallNumber();
+        };
+    };
 
     // function cleanAll() {
     //     counter = 0;
@@ -63,12 +66,12 @@ function App() {
     //     resetNumbers();
     // };
 
-    // function displayBallNumber() {
-    //     const number = getRandomNumber(limitNumber);
-    //     putNumberToData(number);
-    //     printBallNumber();
-    //     buttons.display();
-    // };
+    function displayBallNumber() {
+        const number = getRandomNumber(limitNumber);
+        putNumberToData(number);
+        printBallNumber();
+        // buttons.display();
+    };
 
     // function displayNumbersList() {
     //     counter++;
@@ -77,30 +80,31 @@ function App() {
     //     generateNumbers();
     // };
 
-    // function getRandomNumber(limitNumber) {
-    //    return Math.floor((Math.random() * limitNumber) + 1);
-    // };
+    function getRandomNumber(limitNumber) {
+       return Math.floor((Math.random() * limitNumber) + 1);
+    };
 
-    // function addZeroIfUnity(number) {
-    //     const unityNumber = number < 10;
-    //     if (unityNumber) {
-    //         return number = `0${number}`;
-    //     };
-    //     return number.toString();
-    // };
+    function addZeroIfUnity(number) {
+        const unityNumber = number < 10;
+        if (unityNumber) {
+            return number = `0${number}`;
+        };
+        return number.toString();
+    };
 
-    // function putNumberToData(number) {
-    //     const uniqueNumber = !(numbers.includes(addZeroIfUnity(number)));
-    //     if (uniqueNumber) {
-    //         return numbers.push(addZeroIfUnity(number));
-    //     };
-    //     return  displayBallNumber();
-    // };
+    function putNumberToData(number) {
+        const uniqueNumber = !(numbers.includes(addZeroIfUnity(number)));
+        if (uniqueNumber) {
+            return numbers.push(addZeroIfUnity(number));
+        };
+        return  displayBallNumber();
+    };
 
-    // function printBallNumber() {
-    //     const number = numbers[numbers.length -1];
-    //     document.querySelector(`.ball_${numbers.length}`).textContent = number;
-    // };
+    function printBallNumber() {
+        //const number = numbers[numbers.length -1];
+        //document.querySelector(`.ball_${numbers.length}`).textContent = number;
+        setUInumbers(numbers)
+    };
 
     // function putNumbersIntoList(itemNumber) {
     //     const element = `<div class="numbers"><span class="counter">${itemNumber}:</span>${numbers.join('  .  ')}</div>`;
@@ -169,21 +173,19 @@ function App() {
     //     }
     // };
 
-    init();
-
   return (
     <div className="container">
 
         <h1 className="title">Lucky Lottery Numbers</h1>
 
         <div className="balls">
-            { numbers.map((e, i) => {
+            { uiNumbers.map((e, i) => {
                 return <div key={ i } className='ball'>{ e }</div>
             }) }
         </div>
 
         <div className="drowning">
-            {/* <button className="generator" onClick={ generateNumbers }>Generate numbers </button> */}
+            <button className="generator" onClick={ generateNumbers }>Generate numbers </button>
             {/* <button className="generator clean hide" onClick={ cleanAll }>Clean all</button> */}
             {/* <button className="generator next hide" onClick= { displayNumbersList }>Next</button> */}
         </div>
