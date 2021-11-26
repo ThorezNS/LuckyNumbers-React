@@ -38,14 +38,13 @@ function App() {
         };
     };
 
-    // function cleanAll() {
-    //     counter = 0;
-    //     numbersContainer.innerHTML = '';
-    //     generatorButton.enable();
-    //     generatorButton.show();
-    //     buttons.hide();
-    //     resetNumbers();
-    // };
+    function cleanAll() {
+        setNumbersList([]);
+        //generatorButton.enable();
+        generatorButton.show();
+        buttons.hide();
+        resetNumbers();
+    };
 
     function displayBallNumber() {
         const number = getRandomNumber(limitNumber);
@@ -106,9 +105,9 @@ function App() {
             setGeneratorBtnClass(selectors.hide);
         },
 
-    //     show() {
-    //         generatorBtn.classList.remove(selectors.hide);
-    //     }
+        show() {
+            setGeneratorBtnClass(selectors.generatorBtn);
+        }
     };
 
     const buttons = {
@@ -126,10 +125,10 @@ function App() {
     //         cleanBtn.removeAttribute('disabled', '');
     //     },
 
-    //     hide() {
-    //         nextBtn.classList.add(selectors.hide);
-    //         cleanBtn.classList.add(selectors.hide);
-    //     },
+        hide() {
+            setNextBtnClass(selectors.hide);
+            setCleanBtnClass(selectors.hide);
+        },
 
         show() {
             setNextBtnClass(selectors.nextBtn)
@@ -159,7 +158,7 @@ function App() {
 
         <div className="drowning">
             <button className={ generatorBtnClass } onClick={ generateNumbers }>Generate numbers</button>
-            <button className={ cleanBtnClass }>Clean all</button>
+            <button className={ cleanBtnClass } onClick={ cleanAll }>Clean all</button>
             <button className={ nextBtnClass } onClick={ displayNumbersList }>Next</button>
         </div>
 
