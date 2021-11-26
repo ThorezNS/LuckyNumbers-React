@@ -2,40 +2,22 @@ import { useState, useEffect } from 'react';
 
 function App() {
 
-    const data = {
-        numbers: [],
-        counter: 0
-    };
-
-    const status = {
-        limitNumber: 49,
-        amountOfBalls: 6
-    };
-
-    // let {counter} = data;
-    const {numbers} = data;
-    const {limitNumber, amountOfBalls} = status;
+    const numbers = [];
+    const limitNumber = 49;
+    const amountOfBalls = 6;
 
     const selectors = {
-        ballsContainer:'.balls',
-        ballsElements: '.ball',
-        numbersContainer: '.results',
         generatorBtn: 'generator',
         nextBtn: 'generator next',
         hide: 'hide',
         disable: 'disabled'
     };
 
+    const [numbersList, setNumbersList] = useState([]);
     const [uiNumbers, setUInumbers] = useState([]);
     const [generatorBtnClass, setGeneratorBtnClass] = useState(selectors.generatorBtn);
     const [cleanBtnClass, setCleanBtnClass] = useState(selectors.hide);
     const [nextBtnClass, setNextBtnClass] = useState(selectors.hide);
-    //const [disable, setDisable] = useState(false);
-
-    // const numbersContainer = document.querySelector(selectors.numbersContainer);
-    // const generatorBtn = document.querySelector(selectors.generatorBtn);
-    // const cleanBtn = document.querySelector(selectors.clean);
-    // const nextBtn = document.querySelector(selectors.nextBtn);
 
     useEffect(()=>{
             fillTheArray();
@@ -68,16 +50,15 @@ function App() {
     function displayBallNumber() {
         const number = getRandomNumber(limitNumber);
         putNumberToData(number);
-        printBallNumber();
+        setUInumbers(numbers);
         buttons.display();
     };
 
-    // function displayNumbersList() {
-    //     counter++;
-    //     putNumbersIntoList(counter);
-    //     resetNumbers();
-    //     generateNumbers();
-    // };
+    function displayNumbersList() {
+        putNumbersIntoList();
+        resetNumbers();
+        generateNumbers();
+    };
 
     function getRandomNumber(limitNumber) {
        return Math.floor((Math.random() * limitNumber) + 1);
@@ -99,26 +80,19 @@ function App() {
         return  displayBallNumber();
     };
 
-    function printBallNumber() {
-        //const number = numbers[numbers.length -1];
-        //document.querySelector(`.ball_${numbers.length}`).textContent = number;
-        setUInumbers(numbers)
+    function putNumbersIntoList() {
+        const decoratedNumbers = uiNumbers.join('  .  ');
+        numbersList.unshift(decoratedNumbers);
+        setNumbersList(numbersList);
     };
 
-    // function putNumbersIntoList(itemNumber) {
-    //     const element = `<div class="numbers"><span class="counter">${itemNumber}:</span>${numbers.join('  .  ')}</div>`;
-    //     numbersContainer.insertAdjacentHTML('afterbegin', element);
-    // };
-
-    // function resetNumbers() {
-    //     document.querySelectorAll(selectors.ballsElements).forEach(element => element.textContent = "-" );
-    //     numbers.length = 0;
-    //     buttons.disable();
-    // };
+    function resetNumbers() {
+       fillTheArray();
+        //buttons.disable();
+    };
 
     const generatorButton = {
     //     disable() {
-    //         setDisable(true);
     //         generatorBtn.classList.add(selectors.disable);
     //         generatorBtn.setAttribute('disabled', '');
     //     },
@@ -184,13 +158,18 @@ function App() {
         </div>
 
         <div className="drowning">
-            <button className={ generatorBtnClass } onClick={ generateNumbers }>Generate numbers </button>
+            <button className={ generatorBtnClass } onClick={ generateNumbers }>Generate numbers</button>
             <button className={ cleanBtnClass }>Clean all</button>
-            <button className={ nextBtnClass }>Next</button>
+            <button className={ nextBtnClass } onClick={ displayNumbersList }>Next</button>
         </div>
 
         <div className="results">
-            {/* <div class="numbers"><span class="counter">1:</span>5 . 7 . 14 . 42 . 12 . 18</div> */}
+            { numbersList.map((e , i) => {
+                return <div key={ i } className="numbers">
+                            <span className="counter">{ (i - numbersList.length) * -1 }:</span>
+                            { e }
+                        </div>
+            }) }
         </div>
 
     </div>
