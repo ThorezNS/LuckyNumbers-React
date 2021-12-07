@@ -3,7 +3,7 @@ import {useState} from 'react';
 import Balls from './components/Balls';
 
 function App() {
-  const [nrOfBalls, setNrOfBalls] = useState(6);
+  const nrOfBalls = 6;
   const [numbers, setNumbers] = useState(fillWithEmptyBalls);
 
   function fillWithEmptyBalls() {
@@ -12,10 +12,19 @@ function App() {
   }
 
   function generateNumbers() {
-    let array = [...numbers];
+    //generatorButton.disable();
+    for (let i = 0; i < nrOfBalls; i++) {
+      setTimeout(() => {
+        return setNumbers(displayBallNumber)
+      }, (i + 1) * 300);
+    }
+  }
+
+  function displayBallNumber(prevArray) {
+    let array = [...prevArray];
     const index = array.indexOf('-');
     array[index] = 'nr';
-    setNumbers(array);
+    return array;
   }
 
   return (
@@ -24,7 +33,7 @@ function App() {
         <Balls numbers={numbers}/>
         <div className="drowning">
             <button className="generator"
-                    onClick={generateNumbers}>Generate numbers</button>
+                    onClick={() => generateNumbers(numbers)}>Generate numbers</button>
         </div>
     </div>
   );
