@@ -9,6 +9,7 @@ function App() {
 };
 
   const nrOfBalls = 6;
+  const limitNr = 49;
   const [numbers, setNumbers] = useState(fillWithEmptyBalls);
   const [generatorBtnClass, setGeneratorBtnClass] = useState(selectors.generator);
   const [disabled, setDisabled] = useState(false);
@@ -18,7 +19,7 @@ function App() {
     return array.fill('-');
   }
 
-  function generateNumbers() {
+  function handleGenerateNumbers() {
     setGeneratorBtnClass(`${selectors.disabled} ${selectors.generator}`);
     setDisabled(true);
     for (let i = 0; i < nrOfBalls; i++) {
@@ -31,8 +32,29 @@ function App() {
   function displayBallNumber(prevArray) {
     let array = [...prevArray];
     const index = array.indexOf('-');
-    array[index] = 'nr';
+    array[index] = getUniqueRandomNr(array, limitNr);
     return array;
+  }
+
+  function getUniqueRandomNr(array, limitNumber) {
+    let uniqueRandomNumber;
+
+    function getNumber() {
+      const randomNumber = Math.floor((Math.random() * limitNumber) + 1);
+      getUniqueNumber(randomNumber);
+      //buttons.display();
+    }
+    getNumber();
+
+    function getUniqueNumber(number) {
+      const uniqueNumber = !(array.includes(number));
+      if (uniqueNumber) {
+        return uniqueRandomNumber = number;
+      };
+    return  getNumber();
+    }
+
+    return uniqueRandomNumber;
   }
 
   return (
@@ -42,7 +64,7 @@ function App() {
         <div className="drowning">
             <button className={generatorBtnClass}
                     disabled={disabled}
-                    onClick={generateNumbers}>Generate numbers</button>
+                    onClick={handleGenerateNumbers}>Generate numbers</button>
         </div>
     </div>
   );
