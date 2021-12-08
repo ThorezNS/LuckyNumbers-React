@@ -33,7 +33,7 @@ function App() {
         <Balls numbers={numbers}/>
         <div className="drowning">
             <button className="generator"
-                    onClick={() => generateNumbers(numbers)}>Generate numbers</button>
+                    onClick={generateNumbers}>Generate numbers</button>
         </div>
     </div>
   );
