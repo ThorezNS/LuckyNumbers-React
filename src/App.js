@@ -1,6 +1,7 @@
 import {useState} from 'react';
 //import components
 import Balls from './components/Balls';
+import useUniqueRandomNr from './components/useUniqueRandomNr';
 
 function App() {
   const selectors = {
@@ -10,6 +11,7 @@ function App() {
 
   const nrOfBalls = 6;
   const limitNr = 49;
+  const getUniqueRandomNr = useUniqueRandomNr();
   const [numbers, setNumbers] = useState(fillWithEmptyBalls);
   const [generatorBtnClass, setGeneratorBtnClass] = useState(selectors.generator);
   const [disabled, setDisabled] = useState(false);
@@ -34,27 +36,6 @@ function App() {
     const index = array.indexOf('-');
     array[index] = getUniqueRandomNr(array, limitNr);
     return array;
-  }
-
-  function getUniqueRandomNr(array, limitNumber) {
-    let uniqueRandomNumber;
-
-    function getNumber() {
-      const randomNumber = Math.floor((Math.random() * limitNumber) + 1);
-      getUniqueNumber(randomNumber);
-      //buttons.display();
-    }
-    getNumber();
-
-    function getUniqueNumber(number) {
-      const uniqueNumber = !(array.includes(number));
-      if (uniqueNumber) {
-        return uniqueRandomNumber = number;
-      };
-    return  getNumber();
-    }
-
-    return uniqueRandomNumber;
   }
 
   return (
