@@ -7,7 +7,8 @@ const Balls = ({numbers}) => {
             return number = `0${number}`;
         };
         return number.toString();
-    };
+    }
+
     return (
         <div className="balls">
             {numbers.map((number) => {
