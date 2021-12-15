@@ -1,6 +1,6 @@
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 //import components
-import Balls from './components/Balls';
+import Ball from './components/Ball';
 import useUniqueRandomNr from './components/useUniqueRandomNr';
 
 function App() {
@@ -17,10 +17,6 @@ function App() {
   const getUniqueRandomNr = useUniqueRandomNr();
   const [numbers, setNumbers] = useState(fillWithEmptyBalls);
   const [numbersList, setNumbersList] = useState([]);
-  const [generatorBtnClass, setGeneratorBtnClass] = useState(selectors.generator);
-  const [cleanBtnClass, setCleanBtnClass] = useState(`${selectors.clean} ${selectors.hide}`);
-  const [nextBtnClass, setNextBtnClass] = useState(`${selectors.next} ${selectors.hide}`);
-  const [disabled, setDisabled] = useState(false);
 
   function fillWithEmptyBalls() {
     const array = new Array(nrOfBalls);
@@ -28,17 +24,12 @@ function App() {
   }
 
   function handleDisplayNumbersList() {
-    setNumbersList((prevArray) =>[numbers, ...prevArray]);
+    setNumbersList((prevArray) => [numbers, ...prevArray]);
     setNumbers(fillWithEmptyBalls);
     handleGenerateNumbers();
-    setGeneratorBtnClass(selectors.hide);
-    setCleanBtnClass(`${selectors.disabled} ${selectors.clean}`);
-    setNextBtnClass(`${selectors.disabled} ${selectors.next}`);
   }
 
   function handleGenerateNumbers() {
-    setGeneratorBtnClass(`${selectors.disabled} ${selectors.generator}`);
-    setDisabled(true);
     for (let i = 0; i < nrOfBalls; i++) {
       setTimeout(() => {
         return setNumbers(displayBallNumber)
@@ -53,41 +44,28 @@ function App() {
     return array;
   }
 
-  useEffect(() => {
-    swapButtons();
-  },[numbers])
-
-  function swapButtons() {
-    const isLastBallANumber = typeof(numbers[nrOfBalls - 1]) === 'number';
-    if (isLastBallANumber) {
-      setCleanBtnClass(`${selectors.generator} ${selectors.clean}`);
-      setNextBtnClass(`${selectors.generator} ${selectors.next}`);
-      setGeneratorBtnClass(selectors.hide);
-      setDisabled(false);
-    }
-  }
+  const isFirstBallANumber = typeof(numbers[0]) === 'number';
+  const isLastBallANumber = typeof(numbers[nrOfBalls - 1]) === 'number';
+  const isDisabled = isFirstBallANumber && !isLastBallANumber;
 
   function cleanAll() {
     setNumbers(fillWithEmptyBalls);
     setNumbersList([]);
-    setCleanBtnClass(selectors.hide);
-    setNextBtnClass(selectors.hide);
-    setGeneratorBtnClass(selectors.generator);
   }
 
   return (
     <div className="container">
         <h1 className="title">Lucky Lottery Numbers</h1>
-        <Balls numbers={numbers}/>
+        <Ball numbers={numbers}/>
         <div className="drowning">
-            <button className={generatorBtnClass}
-                    disabled={disabled}
+            <button className={!isFirstBallANumber ? selectors.generator : (isLastBallANumber || numbersList.length > 0 ? selectors.hide : `${selectors.disabled} ${selectors.generator}`)}
+                    disabled={isDisabled}
                     onClick={handleGenerateNumbers}>Generate numbers</button>
-            <button className={cleanBtnClass}
+            <button className={!isLastBallANumber ? (numbersList.length > 0 ? `${selectors.disabled} ${selectors.clean}` : selectors.hide) : selectors.clean}
                     onClick={cleanAll}
-                    disabled={disabled}>Clean all</button>
-            <button className={nextBtnClass}
-                    disabled={disabled}
+                    disabled={isDisabled}>Clean all</button>
+            <button className={!isLastBallANumber ? (numbersList.length > 0 ? `${selectors.disabled} ${selectors.next}` : selectors.hide) : selectors.next}
+                    disabled={isDisabled}
                     onClick={handleDisplayNumbersList}>Next</button>
         </div>
 
