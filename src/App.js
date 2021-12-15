@@ -16,6 +16,7 @@ function App() {
   const limitNr = 49;
   const getUniqueRandomNr = useUniqueRandomNr();
   const [numbers, setNumbers] = useState(fillWithEmptyBalls);
+  const [numbersList, setNumbersList] = useState([]);
   const [generatorBtnClass, setGeneratorBtnClass] = useState(selectors.generator);
   const [cleanBtnClass, setCleanBtnClass] = useState(`${selectors.clean} ${selectors.hide}`);
   const [nextBtnClass, setNextBtnClass] = useState(`${selectors.next} ${selectors.hide}`);
@@ -24,6 +25,15 @@ function App() {
   function fillWithEmptyBalls() {
     const array = new Array(nrOfBalls);
     return array.fill('-');
+  }
+
+  function handleDisplayNumbersList() {
+    setNumbersList((prevArray) =>[...prevArray, numbers].reverse());
+    setNumbers(fillWithEmptyBalls);
+    handleGenerateNumbers();
+    setGeneratorBtnClass(selectors.hide);
+    setCleanBtnClass(`${selectors.disabled} ${selectors.clean}`);
+    setNextBtnClass(`${selectors.disabled} ${selectors.next}`);
   }
 
   function handleGenerateNumbers() {
@@ -53,6 +63,9 @@ function App() {
       setCleanBtnClass(`${selectors.generator} ${selectors.clean}`);
       setNextBtnClass(`${selectors.generator} ${selectors.next}`);
       setGeneratorBtnClass(selectors.hide);
+      setDisabled(false);
+
+
     }
   }
 
@@ -64,8 +77,17 @@ function App() {
             <button className={generatorBtnClass}
                     disabled={disabled}
                     onClick={handleGenerateNumbers}>Generate numbers</button>
-            <button className={cleanBtnClass}>Clean all</button>
-            <button className={nextBtnClass}>Next</button>
+            <button className={cleanBtnClass}
+                    disabled={disabled}>Clean all</button>
+            <button className={nextBtnClass}
+                    disabled={disabled}
+                    onClick={handleDisplayNumbersList}>Next</button>
+        </div>
+
+        <div className="results">
+          {numbersList.map(([...numbers], index) => {
+            return <div className="numbers"><span className="counter">{numbersList.length - index}:</span>{numbers.join('  .  ')}</div>
+          })}
         </div>
     </div>
   );
