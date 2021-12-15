@@ -28,7 +28,7 @@ function App() {
   }
 
   function handleDisplayNumbersList() {
-    setNumbersList((prevArray) =>[...prevArray, numbers].reverse());
+    setNumbersList((prevArray) =>[numbers, ...prevArray]);
     setNumbers(fillWithEmptyBalls);
     handleGenerateNumbers();
     setGeneratorBtnClass(selectors.hide);
@@ -64,9 +64,15 @@ function App() {
       setNextBtnClass(`${selectors.generator} ${selectors.next}`);
       setGeneratorBtnClass(selectors.hide);
       setDisabled(false);
-
-
     }
+  }
+
+  function cleanAll() {
+    setNumbers(fillWithEmptyBalls);
+    setNumbersList([]);
+    setCleanBtnClass(selectors.hide);
+    setNextBtnClass(selectors.hide);
+    setGeneratorBtnClass(selectors.generator);
   }
 
   return (
@@ -78,6 +84,7 @@ function App() {
                     disabled={disabled}
                     onClick={handleGenerateNumbers}>Generate numbers</button>
             <button className={cleanBtnClass}
+                    onClick={cleanAll}
                     disabled={disabled}>Clean all</button>
             <button className={nextBtnClass}
                     disabled={disabled}
