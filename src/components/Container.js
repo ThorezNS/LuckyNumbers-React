@@ -21,25 +21,29 @@ const Container = ({numbers, setNumbers, numbersList, setNumbersList, getUniqueR
         return array.fill(emptyBallCharacter);
     }
 
-    function handleDisplayNumbersList() {
-        setNumbersList((prevArray) => [numbers, ...prevArray]);
-        setNumbers(fillArrayWithCharacter);
-        handleGenerateNumbers();
-    }
-
     function handleGenerateNumbers() {
         for (let i = 0; i < nrOfBalls; i++) {
         setTimeout(() => {
-            return setNumbers(displayBallNumber)
+            return setNumbers(replaceCharacterWithNumber)
         }, (i + 1) * 300);
         }
     }
 
-    function displayBallNumber(prevArray) {
+    function replaceCharacterWithNumber(prevArray) {
         let array = [...prevArray];
-        const index = array.indexOf('-');
+        const index = array.indexOf(emptyBallCharacter);
         array[index] = getUniqueRandomNumber(array, limitNr);
         return array;
+    }
+
+    function handleCreateNumbersList() {
+        setNumbersList((prevArray) => [numbers, ...prevArray]);
+        startTheNextDraw();
+    }
+
+    function startTheNextDraw() {
+        setNumbers(fillArrayWithCharacter);
+        handleGenerateNumbers();
     }
 
     function handleCleanAll() {
@@ -61,7 +65,7 @@ const Container = ({numbers, setNumbers, numbersList, setNumbersList, getUniqueR
                 numbersList={numbersList}
                 nrOfBalls={nrOfBalls}
                 handleGenerateNumbers={handleGenerateNumbers}
-                handleDisplayNumbersList={handleDisplayNumbersList}
+                handleCreateNumbersList={handleCreateNumbersList}
                 handleCleanAll={handleCleanAll}/>
             <NumbersList
                 numbersList={numbersList}

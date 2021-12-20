@@ -1,4 +1,4 @@
-const Buttons = ({numbers, numbersList, nrOfBalls, handleGenerateNumbers, handleDisplayNumbersList, handleCleanAll}) => {
+const Buttons = ({numbers, numbersList, nrOfBalls, handleGenerateNumbers, handleCreateNumbersList, handleCleanAll}) => {
 
     const selectors = {
         generator: 'generator',
@@ -22,7 +22,7 @@ const Buttons = ({numbers, numbersList, nrOfBalls, handleGenerateNumbers, handle
                     disabled={isDisabled}>Clean all</button>
             <button className={!isLastBallANumber ? (numbersList.length > 0 ? `${selectors.disabled} ${selectors.next}` : selectors.hide) : selectors.next}
                     disabled={isDisabled}
-                    onClick={handleDisplayNumbersList}>Next</button>
+                    onClick={handleCreateNumbersList}>Next</button>
         </div>
      );
 }
