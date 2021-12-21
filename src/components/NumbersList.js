@@ -8,11 +8,11 @@ const NumbersList = ({numbersList, addZeroToUnityNumber}) => {
     }
 
     return (
-        <div className="results">
+        <div className="numbers-list">
             {numbersList.map((numbers, index) => {
                 return <div key={index}
-                            className="numbers">
-                                <span className="counter">{numbersList.length - index}:</span>
+                            className="numbers-list__item">
+                                <span className="numbers-list__item--counter">{numbersList.length - index}:</span>
                             {decorateNumbers(numbers, '  .  ')}
                         </div>
             })}

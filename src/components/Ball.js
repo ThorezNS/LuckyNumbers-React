@@ -9,7 +9,7 @@ const Balls = ({numbers, setNumbers, addZeroToUnityNumber, fillArrayWithCharacte
     return (
         <div className="balls">
             {numbers.map((number, index) => {
-               return <div key={index} className="ball">{addZeroToUnityNumber(number)}</div>
+               return <div key={index} className="balls__item">{addZeroToUnityNumber(number)}</div>
             })}
         </div>
     );

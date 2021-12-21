@@ -38,10 +38,10 @@ const Container = ({numbers, setNumbers, numbersList, setNumbersList, getUniqueR
 
     function handleCreateNumbersList() {
         setNumbersList((prevArray) => [numbers, ...prevArray]);
-        startTheNextDraw();
+        startNextDraw();
     }
 
-    function startTheNextDraw() {
+    function startNextDraw() {
         setNumbers(fillArrayWithCharacter);
         handleGenerateNumbers();
     }
@@ -53,7 +53,7 @@ const Container = ({numbers, setNumbers, numbersList, setNumbersList, getUniqueR
 
     return (
         <div className="container">
-            <h1 className="title">Lucky Lottery Numbers</h1>
+            <h1 className="header">Lucky Lottery Numbers</h1>
             <Ball
                 numbers={numbers}
                 setNumbers={setNumbers}
