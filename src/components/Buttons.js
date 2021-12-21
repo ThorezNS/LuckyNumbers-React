@@ -8,19 +8,26 @@ const Buttons = ({numbers, numbersList, nrOfBalls, handleGenerateNumbers, handle
         hide: 'hide'
     }
 
+    const {generator, disabled, clean, next, hide} = selectors;
+
     const isFirstBallANumber = typeof(numbers[0]) === 'number';
     const isLastBallANumber = typeof(numbers[nrOfBalls - 1]) === 'number';
     const isDisabled = isFirstBallANumber && !isLastBallANumber;
 
+    const generatorBtnClass = !isFirstBallANumber && numbersList.length === 0  ? generator :
+    (isLastBallANumber || numbersList.length > 0 ? hide : `${disabled} ${generator}`);
+    const cleanBtnClass = !isLastBallANumber ? (numbersList.length > 0 ? `${disabled} ${clean}` : hide) : clean;
+    const nextBtnClass = !isLastBallANumber ? (numbersList.length > 0 ? `${disabled} ${next}` : hide) : next;
+
     return (
         <div className="drowning">
-            <button className={!isFirstBallANumber ? selectors.generator : (isLastBallANumber || numbersList.length > 0 ? selectors.hide : `${selectors.disabled} ${selectors.generator}`)}
+            <button className={generatorBtnClass}
                     disabled={isDisabled}
                     onClick={handleGenerateNumbers}>Generate numbers</button>
-            <button className={!isLastBallANumber ? (numbersList.length > 0 ? `${selectors.disabled} ${selectors.clean}` : selectors.hide) : selectors.clean}
+            <button className={cleanBtnClass}
                     onClick={handleCleanAll}
                     disabled={isDisabled}>Clean all</button>
-            <button className={!isLastBallANumber ? (numbersList.length > 0 ? `${selectors.disabled} ${selectors.next}` : selectors.hide) : selectors.next}
+            <button className={nextBtnClass}
                     disabled={isDisabled}
                     onClick={handleCreateNumbersList}>Next</button>
         </div>
