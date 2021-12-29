@@ -1,8 +1,8 @@
-const NumbersList = ({numbersList, addZeroToUnityNumber}) => {
+const NumbersList = ({numbersList}) => {
 
     function decorateNumbers(array, character) {
         const zeroDecoratedArray =  array.map((number) => {
-            return addZeroToUnityNumber(number);
+            return number < 10 ? `0${number}` : number.toString();
        })
        return zeroDecoratedArray.join(character);
     }

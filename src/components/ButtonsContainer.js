@@ -1,4 +1,4 @@
-const Buttons = ({numbers, numbersList, nrOfBalls, handleGenerateNumbers, handleCreateNumbersList, handleCleanAll}) => {
+const ButtonsContainer = ({numbers, numbersList, setNumbersList, handleGenerateNumbers, handleCreateNumbersList}) => {
 
     const selectors = {
         generator: 'buttons__generator',
@@ -10,7 +10,7 @@ const Buttons = ({numbers, numbersList, nrOfBalls, handleGenerateNumbers, handle
     const {generator, next, disabled, hide} = selectors;
 
     const isFirstBallANumber = typeof(numbers[0]) === 'number';
-    const isLastBallANumber = typeof(numbers[nrOfBalls - 1]) === 'number';
+    const isLastBallANumber = typeof(numbers[numbers.length - 1]) === 'number';
     const isDisabled = isFirstBallANumber && !isLastBallANumber;
 
     const generatorBtnClass = !isFirstBallANumber && numbersList.length === 0  ? generator :
@@ -22,15 +22,18 @@ const Buttons = ({numbers, numbersList, nrOfBalls, handleGenerateNumbers, handle
         <div className="buttons">
             <button className={generatorBtnClass}
                     disabled={isDisabled}
-                    onClick={handleGenerateNumbers}>Generate numbers</button>
+                    onClick={handleGenerateNumbers}>Generate numbers
+            </button>
             <button className={cleanBtnClass}
-                    onClick={handleCleanAll}
-                    disabled={isDisabled}>Clean all</button>
+                    onClick={() => setNumbersList([])}
+                    disabled={isDisabled}>Clean all
+            </button>
             <button className={nextBtnClass}
                     disabled={isDisabled}
-                    onClick={handleCreateNumbersList}>Next</button>
+                    onClick={handleCreateNumbersList}>Next
+            </button>
         </div>
      );
 }
 
-export default Buttons;
+export default ButtonsContainer;
