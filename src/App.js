@@ -55,25 +55,17 @@ function replaceCharacterWithNumber(prevArray) {
     return array;
 }
 
-function handleCreateNumbersList() {
-    setNumbersList((prevArray) => [numbers, ...prevArray]);
-    handleGenerateNumbers();
-}
-
   return (
     <div className="container">
       <h1 className="header">Lucky Lottery Numbers</h1>
       <Balls
           numbers={numbers}
-          setNumbers={setNumbers}
-          numbersList={numbersList}
       />
       <ButtonsContainer
           numbers={numbers}
           numbersList={numbersList}
           setNumbersList={setNumbersList}
           handleGenerateNumbers={handleGenerateNumbers}
-          handleCreateNumbersList={handleCreateNumbersList}
       />
       <NumbersList
           numbersList={numbersList}

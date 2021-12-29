@@ -1,4 +1,4 @@
-const ButtonsContainer = ({numbers, numbersList, setNumbersList, handleGenerateNumbers, handleCreateNumbersList}) => {
+const ButtonsContainer = ({numbers, numbersList, setNumbersList, handleGenerateNumbers}) => {
 
     const selectors = {
         generator: 'buttons__generator',
@@ -20,18 +20,28 @@ const ButtonsContainer = ({numbers, numbersList, setNumbersList, handleGenerateN
 
     return (
         <div className="buttons">
+
             <button className={generatorBtnClass}
                     disabled={isDisabled}
-                    onClick={handleGenerateNumbers}>Generate numbers
+                    onClick={handleGenerateNumbers}
+            >Generate numbers
             </button>
+
             <button className={cleanBtnClass}
+                    disabled={isDisabled}
                     onClick={() => setNumbersList([])}
-                    disabled={isDisabled}>Clean all
+            >Clean all
             </button>
+
             <button className={nextBtnClass}
                     disabled={isDisabled}
-                    onClick={handleCreateNumbersList}>Next
+                    onClick={() => {
+                        setNumbersList((prevArray) => [numbers, ...prevArray]);
+                        handleGenerateNumbers();
+                    }}
+            >Next
             </button>
+
         </div>
      );
 }
