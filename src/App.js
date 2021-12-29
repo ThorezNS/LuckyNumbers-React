@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Balls from './components/Balls';
 import NumbersList from './components/NumbersList';
 import ButtonsContainer from './components/ButtonsContainer';
+import UniqueRandomNumber from './containers/UniqueRandomNumber';
 
 function App() {
 
@@ -21,19 +22,6 @@ function App() {
     return array.fill(emptyBallCharacter);
   }
 
-  function getUniqueRandomNumber(array, limitNumber) {
-    let uniqueRandomNumber;
-
-    while (uniqueRandomNumber === undefined) {
-      const randomNumber = Math.floor((Math.random() * limitNumber) + 1);
-      const uniqueNumber = !(array.includes(randomNumber));
-      if (uniqueNumber) {
-        return uniqueRandomNumber = randomNumber;
-      };
-    };
-    return uniqueRandomNumber;
-  }
-
   function handleGenerateNumbers() {
       for (let i = 0; i < nrOfBalls; i++) {
         setTimeout(() => {
@@ -45,7 +33,7 @@ function App() {
   function replaceCharacterWithNumber(prevArray) {
       let array = [...prevArray];
       const index = array.indexOf(emptyBallCharacter);
-      array[index] = getUniqueRandomNumber(array, limitNr);
+      array[index] = UniqueRandomNumber(array, limitNr);
       return array;
   }
 

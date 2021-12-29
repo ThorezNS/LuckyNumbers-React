@@ -20,19 +20,16 @@ const ButtonsContainer = ({numbers, numbersList, setNumbersList, handleGenerateN
 
     return (
         <div className="buttons">
-
             <button className={generatorBtnClass}
                     disabled={isDisabled}
                     onClick={handleGenerateNumbers}
             >Generate numbers
             </button>
-
             <button className={cleanBtnClass}
-                    disabled={isDisabled}
                     onClick={() => setNumbersList([])}
+                    disabled={isDisabled}
             >Clean all
             </button>
-
             <button className={nextBtnClass}
                     disabled={isDisabled}
                     onClick={() => {
@@ -41,7 +38,6 @@ const ButtonsContainer = ({numbers, numbersList, setNumbersList, handleGenerateN
                     }}
             >Next
             </button>
-
         </div>
      );
 }
