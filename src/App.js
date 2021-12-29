@@ -24,36 +24,30 @@ function App() {
   function getUniqueRandomNumber(array, limitNumber) {
     let uniqueRandomNumber;
 
-    function getNumber() {
-        const randomNumber = Math.floor((Math.random() * limitNumber) + 1);
-        getUniqueNumber(randomNumber);
-      }
-    getNumber();
-
-    function getUniqueNumber(number) {
-        const uniqueNumber = !(array.includes(number));
-        if (uniqueNumber) {
-          return uniqueRandomNumber = number;
-        };
-    return  getNumber();
-    }
-      return uniqueRandomNumber;
+    while (uniqueRandomNumber === undefined) {
+      const randomNumber = Math.floor((Math.random() * limitNumber) + 1);
+      const uniqueNumber = !(array.includes(randomNumber));
+      if (uniqueNumber) {
+        return uniqueRandomNumber = randomNumber;
+      };
+    };
+    return uniqueRandomNumber;
   }
 
-function handleGenerateNumbers() {
-    for (let i = 0; i < nrOfBalls; i++) {
-    setTimeout(() => {
-        return setNumbers(replaceCharacterWithNumber)
-    }, (i + 1) * 300);
-    }
-}
+  function handleGenerateNumbers() {
+      for (let i = 0; i < nrOfBalls; i++) {
+        setTimeout(() => {
+            return setNumbers(replaceCharacterWithNumber)
+        }, (i + 1) * 300);
+      }
+  }
 
-function replaceCharacterWithNumber(prevArray) {
-    let array = [...prevArray];
-    const index = array.indexOf(emptyBallCharacter);
-    array[index] = getUniqueRandomNumber(array, limitNr);
-    return array;
-}
+  function replaceCharacterWithNumber(prevArray) {
+      let array = [...prevArray];
+      const index = array.indexOf(emptyBallCharacter);
+      array[index] = getUniqueRandomNumber(array, limitNr);
+      return array;
+  }
 
   return (
     <div className="container">
