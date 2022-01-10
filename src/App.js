@@ -8,33 +8,31 @@ function App() {
 
   const limitNr = 49;
   const nrOfBalls = 6;
-  const emptyBallCharacter = '-';
 
   const [numbers, setNumbers] = useState([]);
   const [numbersList, setNumbersList] = useState([]);
 
   useEffect((() =>{
-    setNumbers(fillArrayWithCharacter);
+    setNumbers(initialNumbersState);
   }),[numbersList])
 
-  function fillArrayWithCharacter() {
-    const array = new Array(nrOfBalls);
-    return array.fill(emptyBallCharacter);
+  function initialNumbersState() {
+    return new Array(nrOfBalls).fill(0);
   }
 
   function handleGenerateNumbers() {
-      for (let i = 0; i < nrOfBalls; i++) {
-        setTimeout(() => {
-            return setNumbers(replaceCharacterWithNumber)
-        }, (i + 1) * 300);
-      }
+    for (let i = 0; i < nrOfBalls; i++) {
+      setTimeout(() => {
+          return setNumbers(replaceCharacterWithNumber)
+      }, (i + 1) * 300);
+    }
   }
 
   function replaceCharacterWithNumber(prevArray) {
-      let array = [...prevArray];
-      const index = array.indexOf(emptyBallCharacter);
-      array[index] = UniqueRandomNumber(array, limitNr);
-      return array;
+    let array = [...prevArray];
+    const index = array.indexOf(0);
+    array[index] = UniqueRandomNumber(array, limitNr);
+    return array;
   }
 
   return (

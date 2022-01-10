@@ -2,7 +2,9 @@ const Ball = ({number}) => {
 
     return (
         <div className="balls__item">
-            {number < 10 ? `0${number}` : number.toString()}
+            {number ?
+                number < 10 ? `0${number}` : number.toString() :
+            "-"}
         </div>
      );
 }
