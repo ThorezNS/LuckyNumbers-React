@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Balls from './components/Balls';
 import NumbersList from './components/NumbersList';
 import ButtonsContainer from './components/ButtonsContainer';
-import UniqueRandomNumber from './containers/UniqueRandomNumber';
+import GetUniqueRandomNumber from './containers/GetUniqueRandomNumber';
 
 function App() {
 
@@ -13,27 +13,25 @@ function App() {
   const [numbersList, setNumbersList] = useState([]);
 
   useEffect((() =>{
-    setNumbers(initialNumbersState);
-  }),[numbersList])
+    setNumbers(initialState);
+  }),[numbersList]);
 
-  function initialNumbersState() {
+  const initialState = () => {
     return new Array(nrOfBalls).fill(0);
-  }
+  };
 
-  function handleGenerateNumbers() {
-    for (let i = 0; i < nrOfBalls; i++) {
-      setTimeout(() => {
-          return setNumbers(replaceCharacterWithNumber)
-      }, (i + 1) * 300);
-    }
-  }
+  const handleGenerateNumbers = () => {
+    numbers.forEach((_, i) => {
+      setTimeout(() => setNumbers(randomNumbers), (i + 1) * 300);
+    });
+  };
 
-  function replaceCharacterWithNumber(prevArray) {
-    let array = [...prevArray];
+  const randomNumbers = (prevState) => {
+    let array = [...prevState];
     const index = array.indexOf(0);
-    array[index] = UniqueRandomNumber(array, limitNr);
+    array[index] = GetUniqueRandomNumber(array, limitNr);
     return array;
-  }
+  };
 
   return (
     <div className="container">

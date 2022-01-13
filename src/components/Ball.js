@@ -4,7 +4,7 @@ const Ball = ({number}) => {
         <div className="balls__item">
             {number ?
                 number < 10 ? `0${number}` : number.toString() :
-            "-"}
+            '-'}
         </div>
      );
 }

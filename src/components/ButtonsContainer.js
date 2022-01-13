@@ -9,8 +9,8 @@ const ButtonsContainer = ({numbers, numbersList, setNumbersList, handleGenerateN
 
     const {generator, next, disabled, hide} = selectors;
 
-    const isFirstBallANumber = typeof(numbers[0]) === 'number';
-    const isLastBallANumber = typeof(numbers[numbers.length - 1]) === 'number';
+    const isFirstBallANumber = numbers[0] !== 0;
+    const isLastBallANumber = numbers[numbers.length - 1] !== 0;
     const isDisabled = isFirstBallANumber && !isLastBallANumber;
 
     const generatorBtnClass = !isFirstBallANumber && numbersList.length === 0  ? generator :
