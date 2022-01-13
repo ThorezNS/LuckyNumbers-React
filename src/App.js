@@ -3,6 +3,8 @@ import Balls from './components/Balls';
 import NumbersList from './components/NumbersList';
 import ButtonsContainer from './components/ButtonsContainer';
 import GetUniqueRandomNumber from './containers/GetUniqueRandomNumber';
+import Container from './components/Container';
+import Header from './components/Header';
 
 function App() {
 
@@ -34,11 +36,9 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <h1 className="header">Lucky Lottery Numbers</h1>
-      <Balls
-          numbers={numbers}
-      />
+    <Container>
+      <Header title={'Lucky Lottery Numbers'} />
+      <Balls numbers={numbers} />
       <ButtonsContainer
           numbers={numbers}
           numbersList={numbersList}
@@ -48,7 +48,7 @@ function App() {
       <NumbersList
           numbersList={numbersList}
       />
-    </div>
+    </Container>
   );
 }
 
