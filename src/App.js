@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import Container from './components/Container';
+import Sidebar from './components/Sidebar';
+import Wrapper from './components/Wrapper';
 import Header from './components/Header';
 import Balls from './components/Balls';
 import ButtonsContainer from './components/ButtonsContainer';
@@ -58,35 +60,39 @@ function App() {
 
   return (
     <Container>
-      <Header title={'Lucky Lottery Numbers'} />
-      <Balls numbers={numbers} />
-      <ButtonsContainer>
-          <Button
-            name={'Generate numbers'}
-            disabled={disabled}
-            isLastNrShown={isLastNrShown}
-            numbersList={numbersList}
-            handleGenerateNumbers={handleGenerateNumbers}
-            generateBtn
-          />
-          <Button
-            name={'Clean all'}
-            disabled={disabled}
-            isLastNrShown={isLastNrShown}
-            numbersList={numbersList}
-            handleCleanAll={handleCleanAll}
-            cleanBtn
-          />
-          <Button
-            name={'Next'}
-            disabled={disabled}
-            isLastNrShown={isLastNrShown}
-            numbersList={numbersList}
-            handleNextDraw={handleNextDraw}
-            nextBtn
-          />
-      </ButtonsContainer>
-      <NumbersList numbersList={numbersList} />
+      <Sidebar />
+      <Wrapper>
+        <Header title={'Lucky Lottery Numbers'} />
+        <Balls numbers={numbers} />
+        <ButtonsContainer>
+            <Button
+              name={'Generate numbers'}
+              disabled={disabled}
+              isLastNrShown={isLastNrShown}
+              numbersList={numbersList}
+              handleGenerateNumbers={handleGenerateNumbers}
+              generateBtn
+            />
+            <Button
+              name={'Clean all'}
+              disabled={disabled}
+              isLastNrShown={isLastNrShown}
+              numbersList={numbersList}
+              handleCleanAll={handleCleanAll}
+              cleanBtn
+            />
+            <Button
+              name={'Next'}
+              disabled={disabled}
+              isLastNrShown={isLastNrShown}
+              numbersList={numbersList}
+              handleNextDraw={handleNextDraw}
+              nextBtn
+            />
+        </ButtonsContainer>
+        <NumbersList numbersList={numbersList} />
+      </Wrapper>
+      <Sidebar />
     </Container>
   );
 }
