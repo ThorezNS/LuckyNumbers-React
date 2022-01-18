@@ -3,7 +3,7 @@ import BarWithNumbers from "./BarWithNumbers";
 const DrownNumbersWrapper = ({drownNumbers}) => {
 
     return (
-        <div className="drown-nr-wrapper">
+        <ul className="drown-nr-wrapper">
             {drownNumbers.map((arrayWithNr, drownNrIndex) => {
                 return (
                     <BarWithNumbers
@@ -14,7 +14,7 @@ const DrownNumbersWrapper = ({drownNumbers}) => {
                     />
                 );
             })}
-        </div>
+        </ul>
     );
 }
 
