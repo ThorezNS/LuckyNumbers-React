@@ -2,7 +2,7 @@ const Button = ({
     name,
     disabled,
     isLastNrShown,
-    numbersList,
+    drownNumbers,
     generateBtn,
     cleanBtn,
     nextBtn,
@@ -19,7 +19,7 @@ const Button = ({
 
     const isBtnCircle = nextBtn ? styles.next : styles.generator;
     const isBtnDisabled = disabled ? `${styles.disabled} ${isBtnCircle}` : isBtnCircle;
-    const isFirstDrawFinished = isLastNrShown || numbersList.length;
+    const isFirstDrawFinished = isLastNrShown || drownNumbers.length;
 
     const generateBtnClass = isFirstDrawFinished ? styles.hide : isBtnDisabled;
     const cleanAndNextBtnClass = isFirstDrawFinished ? isBtnDisabled : styles.hide;

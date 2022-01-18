@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import Container from './components/Container';
 import Sidebar from './components/Sidebar';
-import Wrapper from './components/Wrapper';
+import CentralContainer from './components/CentralContainer';
 import Header from './components/Header';
 import Balls from './components/Balls';
 import ButtonsContainer from './components/ButtonsContainer';
 import Button from './components/Button';
-import NumbersList from './components/NumbersList';
+import DrownNumbersWrapper from './components/DrownNumbersWrapper';
 import GetUniqueRandomNumber from './containers/GetUniqueRandomNumber';
 
 function App() {
@@ -15,12 +15,12 @@ function App() {
   const nrOfBalls = 6;
 
   const [numbers, setNumbers] = useState([]);
-  const [numbersList, setNumbersList] = useState([]);
+  const [drownNumbers, setDrownNumbers] = useState([]);
   const [disabled, setDisabled] = useState(false);
 
   useEffect((() =>{
     setNumbers(initialState);
-  }),[numbersList]);
+  }),[drownNumbers]);
 
   const initialState = () => {
     return new Array(nrOfBalls).fill(0);
@@ -41,12 +41,12 @@ function App() {
   };
 
   const handleCleanAll = () => {
-    setNumbersList([]);
+    setDrownNumbers([]);
   };
 
   const handleNextDraw = () => {
     setDisabled(true);
-    setNumbersList((prevState) => [numbers, ...prevState]);
+    setDrownNumbers((prevState) => [numbers, ...prevState]);
     handleGenerateNumbers();
   };
 
@@ -61,7 +61,7 @@ function App() {
   return (
     <Container>
       <Sidebar />
-      <Wrapper>
+      <CentralContainer>
         <Header title={'Lucky Lottery Numbers'} />
         <Balls numbers={numbers} />
         <ButtonsContainer>
@@ -69,7 +69,7 @@ function App() {
               name={'Generate numbers'}
               disabled={disabled}
               isLastNrShown={isLastNrShown}
-              numbersList={numbersList}
+              drownNumbers={drownNumbers}
               handleGenerateNumbers={handleGenerateNumbers}
               generateBtn
             />
@@ -77,7 +77,7 @@ function App() {
               name={'Clean all'}
               disabled={disabled}
               isLastNrShown={isLastNrShown}
-              numbersList={numbersList}
+              drownNumbers={drownNumbers}
               handleCleanAll={handleCleanAll}
               cleanBtn
             />
@@ -85,13 +85,13 @@ function App() {
               name={'Next'}
               disabled={disabled}
               isLastNrShown={isLastNrShown}
-              numbersList={numbersList}
+              drownNumbers={drownNumbers}
               handleNextDraw={handleNextDraw}
               nextBtn
             />
         </ButtonsContainer>
-        <NumbersList numbersList={numbersList} />
-      </Wrapper>
+        <DrownNumbersWrapper drownNumbers={drownNumbers} />
+      </CentralContainer>
       <Sidebar />
     </Container>
   );
