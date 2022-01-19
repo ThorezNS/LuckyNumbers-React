@@ -8,6 +8,7 @@ import ButtonsContainer from './components/ButtonsContainer';
 import Button from './components/Button';
 import DrownNumbersWrapper from './components/DrownNumbersWrapper';
 import GetUniqueRandomNumber from './containers/GetUniqueRandomNumber';
+import GetOccurrences from './containers/GetOccurrences';
 
 function App() {
 
@@ -54,31 +55,11 @@ function App() {
   const isLastNrShown = numbers[numbers.length - 1] !== 0;
 
   useEffect(() => {
-    setOccurrences(getOccurrences());
+    setOccurrences(GetOccurrences(numbers, drownNumbers));
     if (isLastNrShown) {
       setDisabled(false);
     }
   },[numbers]);
-
-  const getOccurrences = () => {
-    const countsObject = {};
-    const zeroFilteredNumbers = numbers.filter(number => number !== 0);
-
-    //Creating an array with filtered numbers and calculating the occurrences
-    [].concat(...zeroFilteredNumbers, ...drownNumbers)
-      .forEach((nr) => {
-        countsObject[nr] = (countsObject[nr] || 0) + 1;
-      });
-
-    const countsArray = Object.entries(countsObject);
-    const sortedOccurrences = countsArray.sort((a, b) => {
-      return b[1] - a[1];
-    });
-    return sortedOccurrences;
-  };
-
-
-
 
   return (
     <Container>
