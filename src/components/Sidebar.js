@@ -1,14 +1,12 @@
-import OccurrenceItem from "./OccurrenceItem";
+import SidebarTitle from "./SidebarTitle";
+import OccurrencesWrapper from "./OccurrencesWrapper";
 
 const Sidebar = () => {
 
     return (
         <section className="sidebar">
-            <h2 className="sidebar__title">occurrences</h2>
-            <OccurrenceItem />
-            <OccurrenceItem />
-            <OccurrenceItem />
-            <OccurrenceItem />
+            <SidebarTitle title={'occurrences'} />
+            <OccurrencesWrapper />
         </section>
     )
 }
