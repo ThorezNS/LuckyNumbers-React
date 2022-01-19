@@ -16,6 +16,7 @@ function App() {
 
   const [numbers, setNumbers] = useState([]);
   const [drownNumbers, setDrownNumbers] = useState([]);
+  const [occurrences, setOccurrences] = useState([]);
   const [disabled, setDisabled] = useState(false);
 
   useEffect((() =>{
@@ -53,10 +54,31 @@ function App() {
   const isLastNrShown = numbers[numbers.length - 1] !== 0;
 
   useEffect(() => {
+    setOccurrences(getOccurrences());
     if (isLastNrShown) {
       setDisabled(false);
     }
   },[numbers]);
+
+  const getOccurrences = () => {
+    const countsObject = {};
+    const zeroFilteredNumbers = numbers.filter(number => number !== 0);
+
+    //Creating an array with filtered numbers and calculating the occurrences
+    [].concat(...zeroFilteredNumbers, ...drownNumbers)
+      .forEach((nr) => {
+        countsObject[nr] = (countsObject[nr] || 0) + 1;
+      });
+
+    const countsArray = Object.entries(countsObject);
+    const sortedOccurrences = countsArray.sort((a, b) => {
+      return b[1] - a[1];
+    });
+    return sortedOccurrences;
+  };
+
+
+
 
   return (
     <Container>

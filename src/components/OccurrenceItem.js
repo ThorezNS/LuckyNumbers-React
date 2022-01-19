@@ -3,10 +3,10 @@ import OccurrenceNumbers from "./OccurrenceNumbers";
 
 const OccurrenceItem = () => {
     return (
-        <div className="occurrence-item">
+        <li className="occurrence-item">
             <Ball secondary />
             <OccurrenceNumbers />
-        </div>
+        </li>
     )
 }
 
