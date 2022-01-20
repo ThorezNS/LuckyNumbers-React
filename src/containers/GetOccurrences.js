@@ -1,16 +1,24 @@
 const GetOccurrences = (currentlyDrawnNumbers, drownNumbers) => {
 
-    const countsObject = {};
+    const occurrencesObject = {};
     const zeroFilteredNumbers = currentlyDrawnNumbers.filter(number => number !== 0);
+    const joinedArrays = [].concat(...zeroFilteredNumbers, ...drownNumbers);
 
-    //Creating an array with filtered numbers and calculating the occurrences
-    [].concat(...zeroFilteredNumbers, ...drownNumbers)
-      .forEach((nr) => {
-        countsObject[nr] = (countsObject[nr] || 0) + 1;
+    //Calculating occurrences numbers
+      joinedArrays.forEach((nr) => {
+        occurrencesObject[nr] = (occurrencesObject[nr] || 0) + 1;
       });
 
-    const countsArray = Object.entries(countsObject);
-    const sortedOccurrences = countsArray.sort((a, b) => {
+    const occurrencesArray = Object.entries(occurrencesObject);
+
+    const addedPercentage = occurrencesArray.map((array) => {
+      const calculatePercentage = ((array[1] / joinedArrays.length) * 100).toFixed(1);
+      const joinWithPercentage = [...array, calculatePercentage]
+      const convertedToNumbers =  joinWithPercentage.map(nr => parseFloat(nr));
+      return convertedToNumbers;
+    });
+
+    const sortedOccurrences = addedPercentage.sort((a, b) => {
       return b[1] - a[1];
     });
 
