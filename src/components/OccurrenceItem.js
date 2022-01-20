@@ -1,11 +1,11 @@
 import Ball from "./Ball";
 import OccurrenceNumbers from "./OccurrenceNumbers";
 
-const OccurrenceItem = () => {
+const OccurrenceItem = ({occurrencesArray}) => {
     return (
         <li className="occurrence-item">
-            <Ball secondary />
-            <OccurrenceNumbers />
+            <Ball smallNr={occurrencesArray[0]} small />
+            <OccurrenceNumbers occurrencesArray={occurrencesArray}/>
         </li>
     )
 }

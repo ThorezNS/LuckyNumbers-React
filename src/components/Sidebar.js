@@ -1,12 +1,13 @@
 import SidebarTitle from "./SidebarTitle";
 import OccurrencesWrapper from "./OccurrencesWrapper";
 
-const Sidebar = () => {
+const Sidebar = ({occurrences}) => {
 
     return (
         <section className="sidebar">
-            <SidebarTitle title={'occurrences'} />
-            <OccurrencesWrapper />
+            {occurrences.length ? <SidebarTitle title={'occurrences'} /> : null}
+            <OccurrencesWrapper occurrences={occurrences}/>
+
         </section>
     )
 }

@@ -1,9 +1,9 @@
-const Ball = ({number, secondary}) => {
+const Ball = ({number, small, smallNr}) => {
 
     return (
-        <div className={secondary ? "occurrence-item--ball" : "balls__item"}>
-            {secondary ?
-                '49' :
+        <div className={small ? "occurrence-item--ball" : "balls__item"}>
+            {small ?
+                smallNr < 10 ? `0${smallNr}` : smallNr.toString() :
                 number ?
                     number < 10 ? `0${number}` : number.toString() :
                     '-'}

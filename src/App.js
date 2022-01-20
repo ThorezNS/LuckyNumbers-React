@@ -63,7 +63,7 @@ function App() {
 
   return (
     <Container>
-      <Sidebar />
+      <Sidebar occurrences={occurrences.filter((_,i) => i % 2 === 0)}/>
       <CentralContainer>
         <Header title={'Lucky Lottery Numbers'} />
         <Balls numbers={numbers} />
@@ -95,7 +95,7 @@ function App() {
         </ButtonsContainer>
         <DrownNumbersWrapper drownNumbers={drownNumbers} />
       </CentralContainer>
-      <Sidebar />
+      <Sidebar occurrences={occurrences.filter((_,i) => i % 2 !== 0)}/>
     </Container>
   );
 }

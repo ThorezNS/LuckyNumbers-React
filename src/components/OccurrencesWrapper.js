@@ -1,14 +1,12 @@
 import OccurrenceItem from "./OccurrenceItem";
 
-const OccurrencesWrapper = () => {
+const OccurrencesWrapper = ({occurrences}) => {
 
     return (
         <ul className="occurrences-wrapper">
-            <OccurrenceItem />
-            <OccurrenceItem />
-            <OccurrenceItem />
-            <OccurrenceItem />
-            <OccurrenceItem />
+            {occurrences.map((occurrencesArray, i) => {
+                return <OccurrenceItem key={i} occurrencesArray={occurrencesArray}/>
+            })}
         </ul>
     )
 }

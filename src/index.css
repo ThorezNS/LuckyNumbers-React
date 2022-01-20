@@ -189,4 +189,11 @@ html {
   display: inline-block;
   margin-left: 1.2rem;
   line-height: 150%;
+  font-weight: 600;
+}
+
+.occurrence-item--percentage {
+  display: inline-block;
+  margin-left: 1.2rem;
+  line-height: 150%;
 }
