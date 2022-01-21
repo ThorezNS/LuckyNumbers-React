@@ -1,20 +1,23 @@
 import BarWithNumbers from "./BarWithNumbers";
 
-const DrownNumbersWrapper = ({drownNumbers}) => {
+const DrownNumbersWrapper = ({drownNumbers, isListShown}) => {
 
     return (
-        <ul className="drown-nr-wrapper">
-            {drownNumbers.map((arrayWithNr, drownNrIndex) => {
-                return (
-                    <BarWithNumbers
-                        key={drownNrIndex}
-                        arrayWithNr={arrayWithNr}
-                        drownNrIndex={drownNrIndex}
-                        drownNumbers={drownNumbers}
-                    />
-                );
-            })}
-        </ul>
+        <>
+            {isListShown &&
+            <ul className="drown-nr-wrapper">
+                {drownNumbers.map((arrayWithNr, drownNrIndex) => {
+                    return (
+                        <BarWithNumbers
+                            key={drownNrIndex}
+                            arrayWithNr={arrayWithNr}
+                            drownNrIndex={drownNrIndex}
+                            drownNumbers={drownNumbers}
+                        />
+                    );
+                })}
+            </ul>}
+        </>
     );
 }
 
