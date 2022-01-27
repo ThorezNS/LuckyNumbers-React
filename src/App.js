@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
 import Container from './components/Container';
+import Sidebar from './components/Sidebar';
+import CentralContainer from './components/CentralContainer';
 import Header from './components/Header';
 import Balls from './components/Balls';
 import ButtonsContainer from './components/ButtonsContainer';
 import Button from './components/Button';
-import NumbersList from './components/NumbersList';
+import ToggleListButton from './components/ToggleListButton';
+import DrownNumbersWrapper from './components/DrownNumbersWrapper';
 import GetUniqueRandomNumber from './containers/GetUniqueRandomNumber';
+import GetOccurrences from './containers/GetOccurrences';
 
 function App() {
 
@@ -13,12 +17,14 @@ function App() {
   const nrOfBalls = 6;
 
   const [numbers, setNumbers] = useState([]);
-  const [numbersList, setNumbersList] = useState([]);
+  const [drownNumbers, setDrownNumbers] = useState([]);
+  const [occurrences, setOccurrences] = useState([]);
   const [disabled, setDisabled] = useState(false);
+  const [isListShown, setIsListShown] = useState(true);
 
   useEffect((() =>{
     setNumbers(initialState);
-  }),[numbersList]);
+  }),[drownNumbers]);
 
   const initialState = () => {
     return new Array(nrOfBalls).fill(0);
@@ -39,18 +45,24 @@ function App() {
   };
 
   const handleCleanAll = () => {
-    setNumbersList([]);
+    setDrownNumbers([]);
+    setIsListShown(true);
   };
 
   const handleNextDraw = () => {
     setDisabled(true);
-    setNumbersList((prevState) => [numbers, ...prevState]);
+    setDrownNumbers((prevState) => [numbers, ...prevState]);
     handleGenerateNumbers();
+  };
+
+  const handleToggleList = () => {
+    setIsListShown(!isListShown);
   };
 
   const isLastNrShown = numbers[numbers.length - 1] !== 0;
 
   useEffect(() => {
+    setOccurrences(GetOccurrences(numbers, drownNumbers));
     if (isLastNrShown) {
       setDisabled(false);
     }
@@ -58,35 +70,44 @@ function App() {
 
   return (
     <Container>
-      <Header title={'Lucky Lottery Numbers'} />
-      <Balls numbers={numbers} />
-      <ButtonsContainer>
-          <Button
-            name={'Generate numbers'}
-            disabled={disabled}
-            isLastNrShown={isLastNrShown}
-            numbersList={numbersList}
-            handleGenerateNumbers={handleGenerateNumbers}
-            generateBtn
-          />
-          <Button
-            name={'Clean all'}
-            disabled={disabled}
-            isLastNrShown={isLastNrShown}
-            numbersList={numbersList}
-            handleCleanAll={handleCleanAll}
-            cleanBtn
-          />
-          <Button
-            name={'Next'}
-            disabled={disabled}
-            isLastNrShown={isLastNrShown}
-            numbersList={numbersList}
-            handleNextDraw={handleNextDraw}
-            nextBtn
-          />
-      </ButtonsContainer>
-      <NumbersList numbersList={numbersList} />
+      <Sidebar occurrences={occurrences.filter((_,i) => i % 2 === 0)}/>
+      <CentralContainer>
+        <Header title={'Lucky Lottery Numbers'} />
+        <Balls numbers={numbers} />
+        <ButtonsContainer>
+            <Button
+              name={'Generate numbers'}
+              disabled={disabled}
+              isLastNrShown={isLastNrShown}
+              drownNumbers={drownNumbers}
+              handleGenerateNumbers={handleGenerateNumbers}
+              generateBtn
+            />
+            <Button
+              name={'Clean all'}
+              disabled={disabled}
+              isLastNrShown={isLastNrShown}
+              drownNumbers={drownNumbers}
+              handleCleanAll={handleCleanAll}
+              cleanBtn
+            />
+            <Button
+              name={'Next'}
+              disabled={disabled}
+              isLastNrShown={isLastNrShown}
+              drownNumbers={drownNumbers}
+              handleNextDraw={handleNextDraw}
+              nextBtn
+            />
+            <ToggleListButton
+              drownNumbers={drownNumbers}
+              handleToggleList={handleToggleList}
+              isListShown={isListShown}
+            />
+        </ButtonsContainer>
+        <DrownNumbersWrapper drownNumbers={drownNumbers} isListShown={isListShown}/>
+      </CentralContainer>
+      <Sidebar occurrences={occurrences.filter((_,i) => i % 2 !== 0)}/>
     </Container>
   );
 }

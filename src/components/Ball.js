@@ -1,10 +1,12 @@
-const Ball = ({number}) => {
+const Ball = ({number, small, smallNr}) => {
 
     return (
-        <div className="balls__item">
-            {number ?
-                number < 10 ? `0${number}` : number.toString() :
-            '-'}
+        <div className={small ? "occurrence-item--ball" : "balls__item"}>
+            {small ?
+                smallNr < 10 ? `0${smallNr}` : smallNr.toString() :
+                number ?
+                    number < 10 ? `0${number}` : number.toString() :
+                    '-'}
         </div>
      );
 }
