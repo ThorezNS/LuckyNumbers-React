@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
-import Container from './components/templates/Container/Container';
-import Sidebar from './components/organisms/Sidebar/Sidebar';
-import CentralContainer from './components/organisms/CentralContainer/CentralContainer';
-import Header from './components/atoms/Header/Header';
-import Balls from './components/moleculs/Balls/Balls';
-import ButtonsContainer from './components/moleculs/ButtonsContainer/ButtonsContainer';
-import Button from './components/atoms/Button/Button';
-import ToggleListButton from './components/atoms/ToggleListButton/ToggleListButton';
-import DrownNumbersWrapper from './components/moleculs/DrownNumbersWrapper/DrownNumbersWrapper';
-import GetUniqueRandomNumber from './containers/GetUniqueRandomNumber';
-import GetOccurrences from './containers/GetOccurrences';
+import Container from '../../components/templates/Container/Container';
+import Sidebar from '../../components/organisms/Sidebar/Sidebar';
+import CentralContainer from '../../components/organisms/CentralContainer/CentralContainer';
+import Header from '../../components/atoms/Header/Header';
+import Balls from '../../components/molecules/Balls/Balls';
+import ButtonsContainer from '../../components/molecules/ButtonsContainer/ButtonsContainer';
+import Button from '../../components/atoms/Button/Button';
+import ToggleListButton from '../../components/atoms/ToggleListButton/ToggleListButton';
+import DrownNumbersWrapper from '../../components/molecules/DrownNumbersWrapper/DrownNumbersWrapper';
+import GetUniqueRandomNumber from '../../containers/GetUniqueRandomNumber';
+import GetOccurrences from '../../containers/GetOccurrences';
 
-function App() {
+function Root() {
 
   const limitNr = 49;
   const nrOfBalls = 6;
@@ -115,4 +115,4 @@ function App() {
   );
 }
 
-export default App;
+export default Root;
