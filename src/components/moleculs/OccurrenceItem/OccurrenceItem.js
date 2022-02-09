@@ -1,5 +1,5 @@
-import Ball from "./Ball";
-import OccurrenceNumbers from "./OccurrenceNumbers";
+import Ball from "../../atoms/Ball/Ball";
+import OccurrenceNumbers from "../../atoms/OccurrenceNumbers/OccurrenceNumbers";
 
 const OccurrenceItem = ({occurrencesArray}) => {
     return (

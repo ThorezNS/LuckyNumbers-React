@@ -1,5 +1,5 @@
-import BarCounter from "./BarCounter";
-import NumberInTheBar from "./NumberInTheBar";
+import BarCounter from "../../atoms/BarCounter/BarCounter";
+import NumberInTheBar from "../../atoms/NumberInTheBar/NumberInTheBar";
 
 const BarWithNumbers = ({drownNrIndex, arrayWithNr, drownNumbers}) => {
 

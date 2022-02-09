@@ -1,4 +1,4 @@
-import OccurrenceItem from "./OccurrenceItem";
+import OccurrenceItem from "../OccurrenceItem/OccurrenceItem";
 
 const OccurrencesWrapper = ({occurrences}) => {
 

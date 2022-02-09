@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
-import Container from './components/Container';
-import Sidebar from './components/Sidebar';
-import CentralContainer from './components/CentralContainer';
-import Header from './components/Header';
-import Balls from './components/Balls';
-import ButtonsContainer from './components/ButtonsContainer';
-import Button from './components/Button';
-import ToggleListButton from './components/ToggleListButton';
-import DrownNumbersWrapper from './components/DrownNumbersWrapper';
+import Container from './components/templates/Container/Container';
+import Sidebar from './components/organisms/Sidebar/Sidebar';
+import CentralContainer from './components/organisms/CentralContainer/CentralContainer';
+import Header from './components/atoms/Header/Header';
+import Balls from './components/moleculs/Balls/Balls';
+import ButtonsContainer from './components/moleculs/ButtonsContainer/ButtonsContainer';
+import Button from './components/atoms/Button/Button';
+import ToggleListButton from './components/atoms/ToggleListButton/ToggleListButton';
+import DrownNumbersWrapper from './components/moleculs/DrownNumbersWrapper/DrownNumbersWrapper';
 import GetUniqueRandomNumber from './containers/GetUniqueRandomNumber';
 import GetOccurrences from './containers/GetOccurrences';
 

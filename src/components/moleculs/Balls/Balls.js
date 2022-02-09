@@ -1,4 +1,4 @@
-import Ball from "./Ball";
+import Ball from "../../atoms/Ball/Ball";
 
 const Balls = ({numbers}) => {
 
