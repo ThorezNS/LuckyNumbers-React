@@ -68,9 +68,12 @@ function App() {
     }
   },[numbers]);
 
+  const occurrencesWithAnEvenIndex = occurrences.filter((_,i) => i % 2 === 0);
+  const occurrencesWithAnOddIndex = occurrences.filter((_,i) => i % 2 !== 0);
+
   return (
     <Container>
-      <Sidebar occurrences={occurrences.filter((_,i) => i % 2 === 0)}/>
+      <Sidebar occurrences={occurrencesWithAnEvenIndex}/>
       <CentralContainer>
         <Header title={'Lucky Lottery Numbers'} />
         <Balls numbers={numbers} />
@@ -107,7 +110,7 @@ function App() {
         </ButtonsContainer>
         <DrownNumbersWrapper drownNumbers={drownNumbers} isListShown={isListShown}/>
       </CentralContainer>
-      <Sidebar occurrences={occurrences.filter((_,i) => i % 2 !== 0)}/>
+      <Sidebar occurrences={occurrencesWithAnOddIndex}/>
     </Container>
   );
 }
