@@ -1,5 +1,6 @@
 import BarCounter from "../../atoms/BarCounter/BarCounter";
 import NumberInTheBar from "../../atoms/NumberInTheBar/NumberInTheBar";
+import './BarWithNumbers.css';
 
 const BarWithNumbers = ({drownNrIndex, arrayWithNr, drownNumbers}) => {
 

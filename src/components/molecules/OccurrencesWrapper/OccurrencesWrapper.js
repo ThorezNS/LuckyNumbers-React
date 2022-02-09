@@ -1,4 +1,5 @@
 import OccurrenceItem from "../OccurrenceItem/OccurrenceItem";
+import './OccurrencesWrapper.css';
 
 const OccurrencesWrapper = ({occurrences}) => {
 

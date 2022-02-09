@@ -1,3 +1,5 @@
+import './CentralContainer.css';
+
 const CentralContainer = ({children}) => {
 
     return (

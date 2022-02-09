@@ -1,5 +1,6 @@
 import SidebarTitle from "../../atoms/SidebarTitle/SidebarTitle";
 import OccurrencesWrapper from "../../molecules/OccurrencesWrapper/OccurrencesWrapper";
+import './Sidebar.css';
 
 const Sidebar = ({occurrences}) => {
 

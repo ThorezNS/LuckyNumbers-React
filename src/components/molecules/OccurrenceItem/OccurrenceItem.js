@@ -1,5 +1,6 @@
 import Ball from "../../atoms/Ball/Ball";
 import OccurrenceNumbers from "../../atoms/OccurrenceNumbers/OccurrenceNumbers";
+import './OccurrenceItem.css';
 
 const OccurrenceItem = ({occurrencesArray}) => {
     return (

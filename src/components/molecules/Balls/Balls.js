@@ -1,4 +1,5 @@
 import Ball from "../../atoms/Ball/Ball";
+import './Balls.css';
 
 const Balls = ({numbers}) => {
 

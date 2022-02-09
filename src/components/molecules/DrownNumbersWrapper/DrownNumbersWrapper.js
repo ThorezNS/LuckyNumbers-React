@@ -1,4 +1,5 @@
 import BarWithNumbers from "../BarWithNumbers/BarWithNumbers";
+import './DrownNumbersWrapper.css';
 
 const DrownNumbersWrapper = ({drownNumbers, isListShown}) => {
 

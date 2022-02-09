@@ -1,3 +1,5 @@
+import './OccurrenceNumbers.css';
+
 const OccurrenceNumbers = ({occurrencesArray}) => {
     return (
         <div className="occurrence-item--numbers">

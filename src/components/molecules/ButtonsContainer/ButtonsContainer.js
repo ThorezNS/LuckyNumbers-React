@@ -1,3 +1,5 @@
+import './ButtonsContainer.css';
+
 const ButtonsContainer = ({children}) => {
 
     return (

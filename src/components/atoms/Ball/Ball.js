@@ -1,3 +1,5 @@
+import './Ball.css';
+
 const Ball = ({number, small, smallNr}) => {
 
     return (

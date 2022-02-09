@@ -1,3 +1,5 @@
+import './SidebarTitle.css';
+
 const SidebarTitle = ({title}) => {
 
     return (

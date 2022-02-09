@@ -1,3 +1,5 @@
+import './BarCounter.css';
+
 const BarCounter = ({drownNumbers, drownNrIndex}) => {
 
     return (
