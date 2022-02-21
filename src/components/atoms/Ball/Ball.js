@@ -1,3 +1,4 @@
+import ChangeTypeAndDecorateNumber from '../../../containers/ChangeTypeAndDecorateNumber';
 import './Ball.css';
 
 const Ball = ({ number, small, smallNr }) => {
@@ -7,13 +8,9 @@ const Ball = ({ number, small, smallNr }) => {
       className={small ? 'occurrence-item--ball' : 'balls__item'}
     >
       {small
-        ? smallNr < 10
-          ? `0${smallNr}`
-          : smallNr.toString()
+        ? ChangeTypeAndDecorateNumber(smallNr)
         : number
-        ? number < 10
-          ? `0${number}`
-          : number.toString()
+        ? ChangeTypeAndDecorateNumber(number)
         : '-'}
     </div>
   );
