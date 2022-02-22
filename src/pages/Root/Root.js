@@ -12,19 +12,31 @@ import GetUniqueRandomNumber from '../../containers/GetUniqueRandomNumber';
 import GetOccurrences from '../../containers/GetOccurrences';
 
 function Root() {
-
-  const limitNr = 49;
-  const nrOfBalls = 6;
-
   const [numbers, setNumbers] = useState([]);
   const [drownNumbers, setDrownNumbers] = useState([]);
   const [occurrences, setOccurrences] = useState([]);
   const [disabled, setDisabled] = useState(false);
   const [isListShown, setIsListShown] = useState(true);
 
-  useEffect((() =>{
+  const isLastNrShown = numbers[numbers.length - 1] !== 0;
+  const isFirstDrawFinished = isLastNrShown || drownNumbers.length;
+
+  const occurrencesWithAnEvenIndex = occurrences.filter((_, i) => i % 2 === 0);
+  const occurrencesWithAnOddIndex = occurrences.filter((_, i) => i % 2 !== 0);
+
+  const limitNr = 49;
+  const nrOfBalls = 6;
+
+  useEffect(() => {
     setNumbers(initialState);
-  }),[drownNumbers]);
+  }, [drownNumbers]);
+
+  useEffect(() => {
+    setOccurrences(GetOccurrences(numbers, drownNumbers));
+    if (isLastNrShown) {
+      setDisabled(false);
+    }
+  }, [numbers]);
 
   const initialState = () => {
     return new Array(nrOfBalls).fill(0);
@@ -59,58 +71,46 @@ function Root() {
     setIsListShown(!isListShown);
   };
 
-  const isLastNrShown = numbers[numbers.length - 1] !== 0;
-
-  useEffect(() => {
-    setOccurrences(GetOccurrences(numbers, drownNumbers));
-    if (isLastNrShown) {
-      setDisabled(false);
-    }
-  },[numbers]);
-
-  const occurrencesWithAnEvenIndex = occurrences.filter((_,i) => i % 2 === 0);
-  const occurrencesWithAnOddIndex = occurrences.filter((_,i) => i % 2 !== 0);
-
   return (
     <Container>
-      <Sidebar occurrences={occurrencesWithAnEvenIndex}/>
+      <Sidebar occurrences={occurrencesWithAnEvenIndex} />
       <CentralContainer>
         <Header title={'Lucky Lottery Numbers'} />
         <Balls numbers={numbers} />
         <ButtonsContainer>
-            <Button
-              name={'Generate numbers'}
-              disabled={disabled}
-              isLastNrShown={isLastNrShown}
-              drownNumbers={drownNumbers}
-              handleGenerateNumbers={handleGenerateNumbers}
-              generateBtn
-            />
-            <Button
-              name={'Clean all'}
-              disabled={disabled}
-              isLastNrShown={isLastNrShown}
-              drownNumbers={drownNumbers}
-              handleCleanAll={handleCleanAll}
-              cleanBtn
-            />
-            <Button
-              name={'Next'}
-              disabled={disabled}
-              isLastNrShown={isLastNrShown}
-              drownNumbers={drownNumbers}
-              handleNextDraw={handleNextDraw}
-              nextBtn
-            />
-            <ToggleListButton
-              drownNumbers={drownNumbers}
-              handleToggleList={handleToggleList}
-              isListShown={isListShown}
-            />
+          <Button
+            name={'Generate numbers'}
+            disabled={disabled}
+            isFirstDrawFinished={isFirstDrawFinished}
+            handleGenerateNumbers={handleGenerateNumbers}
+            generateBtn
+          />
+          <Button
+            name={'Clean all'}
+            disabled={disabled}
+            isFirstDrawFinished={isFirstDrawFinished}
+            handleCleanAll={handleCleanAll}
+            cleanBtn
+          />
+          <Button
+            name={'Next'}
+            disabled={disabled}
+            isFirstDrawFinished={isFirstDrawFinished}
+            handleNextDraw={handleNextDraw}
+            nextBtn
+          />
+          <ToggleListButton
+            drownNumbers={drownNumbers}
+            handleToggleList={handleToggleList}
+            isListShown={isListShown}
+          />
         </ButtonsContainer>
-        <DrownNumbersWrapper drownNumbers={drownNumbers} isListShown={isListShown}/>
+        <DrownNumbersWrapper
+          drownNumbers={drownNumbers}
+          isListShown={isListShown}
+        />
       </CentralContainer>
-      <Sidebar occurrences={occurrencesWithAnOddIndex}/>
+      <Sidebar occurrences={occurrencesWithAnOddIndex} />
     </Container>
   );
 }
