@@ -24,10 +24,6 @@
   border-radius: 50%;
 }
 
-.buttons__hide {
-  display: none;
-}
-
 .buttons__disabled,
 .buttons__disabled:hover {
   border: #c9c9c9 solid 0.2rem;

@@ -15,7 +15,6 @@ const Button = ({
     generator: 'buttons__generator',
     next: 'buttons__next buttons__generator',
     disabled: 'buttons__disabled',
-    hide: 'buttons__hide',
   };
 
   const isBtnCircle = nextBtn ? styles.next : styles.generator;
@@ -23,18 +22,19 @@ const Button = ({
     ? `${styles.disabled} ${isBtnCircle}`
     : isBtnCircle;
 
-  const generateBtnClass = isFirstDrawFinished ? styles.hide : isBtnDisabled;
-  const cleanAndNextBtnClass = isFirstDrawFinished
-    ? isBtnDisabled
-    : styles.hide;
+  const isCleanAndNextBtnHidden =
+    !isFirstDrawFinished && (cleanBtn || nextBtn) ? true : false;
+  const hidden =
+    isFirstDrawFinished && generateBtn ? true : isCleanAndNextBtnHidden;
 
   return (
     <>
       <button
         disabled={disabled}
+        hidden={hidden}
         className={
-          (generateBtn && generateBtnClass) ||
-          ((cleanBtn || nextBtn) && cleanAndNextBtnClass)
+          (generateBtn && isBtnDisabled) ||
+          ((cleanBtn || nextBtn) && isBtnDisabled)
         }
         onClick={
           (generateBtn && handleGenerateNumbers) ||
