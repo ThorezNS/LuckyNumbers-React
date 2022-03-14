@@ -28,7 +28,11 @@ function Root() {
   const nrOfBalls = 6;
 
   useEffect(() => {
+    let abortController = new AbortController();
     setNumbers(initialState);
+    return () => {
+      abortController.abort();
+    };
   }, [drownNumbers]);
 
   useEffect(() => {
