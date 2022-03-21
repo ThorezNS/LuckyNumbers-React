@@ -36,10 +36,14 @@ function Root() {
   }, [drownNumbers]);
 
   useEffect(() => {
+    let abortController = new AbortController();
     setOccurrences(GetOccurrences(numbers, drownNumbers));
     if (isLastNrShown) {
       setDisabled(false);
     }
+    return () => {
+      abortController.abort();
+    };
   }, [numbers]);
 
   const initialState = () => {
