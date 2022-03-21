@@ -1,0 +1,7 @@
+.occurrence-item {
+    width: 150px;
+    height: 40px;
+    padding: 0 .5rem;
+    display: flex;
+    justify-content: left;
+}

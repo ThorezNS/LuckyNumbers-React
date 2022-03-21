@@ -1,0 +1,11 @@
+.sidebar__title {
+  font-family: cambria, sans-serif;
+  font-size: 2.4rem;
+  font-weight: 400;
+  opacity: .75;
+  text-shadow: 1px 1px 3px rgb(248, 252, 6);
+  text-align: center;
+  padding: .6rem;
+  margin-bottom: 1rem;
+  letter-spacing: .2rem;
+}
