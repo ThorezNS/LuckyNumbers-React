@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/LuckyNumbers-React/static/css/main.fd34920a.chunk.css",
+    "main.js": "/LuckyNumbers-React/static/js/main.c74af52d.chunk.js",
+    "main.js.map": "/LuckyNumbers-React/static/js/main.c74af52d.chunk.js.map",
+    "runtime-main.js": "/LuckyNumbers-React/static/js/runtime-main.9c0d4c09.js",
+    "runtime-main.js.map": "/LuckyNumbers-React/static/js/runtime-main.9c0d4c09.js.map",
+    "static/js/2.f69dbe1f.chunk.js": "/LuckyNumbers-React/static/js/2.f69dbe1f.chunk.js",
+    "static/js/2.f69dbe1f.chunk.js.map": "/LuckyNumbers-React/static/js/2.f69dbe1f.chunk.js.map",
+    "index.html": "/LuckyNumbers-React/index.html",
+    "static/css/main.fd34920a.chunk.css.map": "/LuckyNumbers-React/static/css/main.fd34920a.chunk.css.map",
+    "static/js/2.f69dbe1f.chunk.js.LICENSE.txt": "/LuckyNumbers-React/static/js/2.f69dbe1f.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9c0d4c09.js",
+    "static/js/2.f69dbe1f.chunk.js",
+    "static/css/main.fd34920a.chunk.css",
+    "static/js/main.c74af52d.chunk.js"
+  ]
+}
